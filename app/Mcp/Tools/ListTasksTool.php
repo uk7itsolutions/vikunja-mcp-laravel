@@ -26,7 +26,10 @@ class ListTasksTool extends VikunjaTool
         $projectId = $request->get('project_id');
         $page = $request->get('page', 1);
 
-        $tasks = $this->client->get("projects/{$projectId}/tasks", ['page' => $page]);
+        $tasks = $this->client->get('tasks', [
+            'filter' => 'project_id = ' . $projectId,
+            'page' => $page
+        ]);
         return Response::text(json_encode($tasks));
     }
 }
