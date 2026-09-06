@@ -7,6 +7,8 @@ use App\Mcp\Tools\ListTasksTool;
 use App\Mcp\Tools\CreateTaskTool;
 use App\Mcp\Tools\GetTaskTool;
 use App\Mcp\Tools\UpdateTaskTool;
+use App\Mcp\Tools\CreateTaskRelationTool;
+use App\Mcp\Tools\RemoveTaskRelationTool;
 use Laravel\Mcp\Server;
 use Laravel\Mcp\Server\Attributes\Instructions;
 use Laravel\Mcp\Server\Attributes\Name;
@@ -23,5 +25,7 @@ class VikunjaServer extends Server
         CreateTaskTool::class,
         GetTaskTool::class,
         UpdateTaskTool::class,
+        CreateTaskRelationTool::class,
+        RemoveTaskRelationTool::class,
     ];
 }
