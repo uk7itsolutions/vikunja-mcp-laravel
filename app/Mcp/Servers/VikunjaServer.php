@@ -10,6 +10,8 @@ use App\Mcp\Tools\UpdateTaskTool;
 use App\Mcp\Tools\CreateTaskRelationTool;
 use App\Mcp\Tools\RemoveTaskRelationTool;
 use App\Mcp\Tools\DeleteTaskTool;
+use App\Mcp\Tools\ListBucketsTool;
+use App\Mcp\Tools\MoveTaskToBucketTool;
 use Laravel\Mcp\Server;
 use Laravel\Mcp\Server\Attributes\Instructions;
 use Laravel\Mcp\Server\Attributes\Name;
@@ -29,5 +31,7 @@ class VikunjaServer extends Server
         CreateTaskRelationTool::class,
         RemoveTaskRelationTool::class,
         DeleteTaskTool::class,
+        ListBucketsTool::class,
+        MoveTaskToBucketTool::class,
     ];
 }
