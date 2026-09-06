@@ -18,7 +18,7 @@ class ListProjectsTool extends VikunjaTool
         return [];
     }
 
-    protected function execute(Request $request): Response
+    public function handle(Request $request): Response
     {
         try {
             $projects = $this->client->get('projects');

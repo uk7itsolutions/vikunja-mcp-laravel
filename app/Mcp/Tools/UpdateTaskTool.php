@@ -25,7 +25,7 @@ class UpdateTaskTool extends VikunjaTool
         ];
     }
 
-    protected function execute(Request $request): Response
+    public function handle(Request $request): Response
     {
         $taskId = $request->get('task_id');
         $data = [];

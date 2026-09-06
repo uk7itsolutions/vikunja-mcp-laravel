@@ -24,7 +24,7 @@ class CreateTaskTool extends VikunjaTool
         ];
     }
 
-    protected function execute(Request $request): Response
+    public function handle(Request $request): Response
     {
         $projectId = $request->get('project_id');
         

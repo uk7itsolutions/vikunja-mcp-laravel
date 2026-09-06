@@ -20,7 +20,7 @@ class GetTaskTool extends VikunjaTool
         ];
     }
 
-    protected function execute(Request $request): Response
+    public function handle(Request $request): Response
     {
         try {
             $taskId = $request->get('task_id');
