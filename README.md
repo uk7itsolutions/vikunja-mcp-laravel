@@ -12,11 +12,13 @@ This server currently exposes the following capabilities to the AI:
 - **`list-tasks`**: Retrieve tasks belonging to a specific project.
 - **`list-buckets`**: List all Kanban buckets for a project or specific view.
 - **`list-labels`**: List all available labels in Vikunja (supports searching).
+- **`list-task-comments`**: List all comments on a specific task.
 - **`get-task`**: Fetch complete details for a specific task.
 - **`create-task`**: Create a new task in a specified project.
 - **`update-task`**: Modify an existing task.
 - **`delete-task`**: Permanently delete a task.
 - **`manage-task-label`**: Add or remove a label from a task (automatically creates the label if it doesn't exist).
+- **`manage-task-comment`**: Add, update, or remove a comment on a task.
 - **`create-task-relation`**: Add a relationship/dependency between two tasks.
 - **`remove-task-relation`**: Remove an existing relationship between two tasks.
 - **`move-task-to-bucket`**: Move a task to a specific Kanban bucket.

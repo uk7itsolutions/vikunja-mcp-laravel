@@ -14,6 +14,8 @@ use App\Mcp\Tools\ListBucketsTool;
 use App\Mcp\Tools\MoveTaskToBucketTool;
 use App\Mcp\Tools\ListLabelsTool;
 use App\Mcp\Tools\ManageTaskLabelTool;
+use App\Mcp\Tools\ListTaskCommentsTool;
+use App\Mcp\Tools\ManageTaskCommentTool;
 use Laravel\Mcp\Server;
 use Laravel\Mcp\Server\Attributes\Instructions;
 use Laravel\Mcp\Server\Attributes\Name;
@@ -37,5 +39,7 @@ class VikunjaServer extends Server
         MoveTaskToBucketTool::class,
         ListLabelsTool::class,
         ManageTaskLabelTool::class,
+        ListTaskCommentsTool::class,
+        ManageTaskCommentTool::class,
     ];
 }
