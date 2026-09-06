@@ -4,9 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Services\VikunjaClient;
 use Closure;
-use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,34 +30,10 @@ class ValidateVikunjaKey
             ], 401);
         }
 
-        try {
-            $check = Http::withHeaders(['Authorization' => $header])
-                ->acceptJson()
-                ->timeout(5)
-                ->get(rtrim($baseUrl, '/').'/api/v1/user');
-        } catch (ConnectionException $e) {
-            Log::error('Could not reach Vikunja API', [
-                'base_url' => $baseUrl,
-                'message' => $e->getMessage(),
-            ]);
-
-            return response()->json([
-                'error' => "Could not reach Vikunja at {$baseUrl}.",
-            ], 502);
-        }
-
-        if ($check->status() === 401) {
-            return response()->json([
-                'error' => 'Vikunja rejected the credentials.',
-            ], 401);
-        }
-
-        if ($check->failed()) {
-            return response()->json([
-                'error' => "Vikunja API returned HTTP {$check->status()}",
-            ], 502);
-        }
-
+        // Bind the client. We do not ping the Vikunja API here because API tokens
+        // may be scoped and restricted from hitting endpoints like /api/v1/user.
+        // If the token is invalid, the individual tools will catch the error and
+        // report it gracefully back to Claude.
         app()->instance(VikunjaClient::class, new VikunjaClient($header));
 
         return $next($request);
