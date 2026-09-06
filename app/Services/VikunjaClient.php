@@ -72,7 +72,7 @@ class VikunjaClient
                 'payload' => $data,
                 'body' => $response->body(),
             ]);
-            $response->throw();
+            throw new \Exception("Vikunja API Request Failed ({$response->status()}): " . $response->body());
         }
 
         return $response->json();
