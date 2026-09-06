@@ -22,31 +22,39 @@ class UpdateTaskTool extends VikunjaTool
             'done' => $schema->boolean()->description('Whether the task is completed'),
             'priority' => $schema->integer()->description('The priority of the task (1-5)'),
             'due_date' => $schema->string()->description('The due date of the task (ISO 8601 format)'),
+            'project_id' => $schema->integer()->description('Move the task to a different project ID'),
         ];
     }
 
     public function handle(Request $request): Response
     {
-        $taskId = $request->get('task_id');
-        $data = [];
+        try {
+            $taskId = $request->get('task_id');
+            $data = [];
 
-        if ($request->has('title')) {
-            $data['title'] = $request->get('title');
-        }
-        if ($request->has('description')) {
-            $data['description'] = $request->get('description');
-        }
-        if ($request->has('done')) {
-            $data['done'] = $request->get('done');
-        }
-        if ($request->has('priority')) {
-            $data['priority'] = $request->get('priority');
-        }
-        if ($request->has('due_date')) {
-            $data['due_date'] = $request->get('due_date');
-        }
+            if ($request->has('title')) {
+                $data['title'] = $request->get('title');
+            }
+            if ($request->has('description')) {
+                $data['description'] = $request->get('description');
+            }
+            if ($request->has('done')) {
+                $data['done'] = $request->get('done');
+            }
+            if ($request->has('priority')) {
+                $data['priority'] = $request->get('priority');
+            }
+            if ($request->has('due_date')) {
+                $data['due_date'] = $request->get('due_date');
+            }
+            if ($request->has('project_id')) {
+                $data['project_id'] = $request->get('project_id');
+            }
 
-        $task = $this->client->post("tasks/{$taskId}", $data);
-        return Response::text(json_encode($task));
+            $task = $this->client->post("tasks/{$taskId}", $data);
+            return Response::text(json_encode($task));
+        } catch (\Throwable $e) {
+            return Response::text("ERROR: " . $e->getMessage());
+        }
     }
 }
