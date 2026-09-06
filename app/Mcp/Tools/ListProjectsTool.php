@@ -20,7 +20,11 @@ class ListProjectsTool extends VikunjaTool
 
     protected function execute(Request $request): Response
     {
-        $projects = $this->client->get('projects');
-        return Response::text(json_encode($projects));
+        try {
+            $projects = $this->client->get('projects');
+            return Response::text(json_encode($projects));
+        } catch (\Throwable $e) {
+            return Response::text("ERROR: " . $e->getMessage());
+        }
     }
 }

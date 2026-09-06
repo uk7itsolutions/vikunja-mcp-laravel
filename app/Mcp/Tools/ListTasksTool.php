@@ -23,13 +23,17 @@ class ListTasksTool extends VikunjaTool
 
     protected function execute(Request $request): Response
     {
-        $projectId = $request->get('project_id');
-        $page = $request->get('page', 1);
+        try {
+            $projectId = $request->get('project_id');
+            $page = $request->get('page', 1);
 
-        $tasks = $this->client->get('tasks', [
-            'filter' => 'project_id = ' . $projectId,
-            'page' => $page
-        ]);
-        return Response::text(json_encode($tasks));
+            $tasks = $this->client->get('tasks', [
+                'filter' => 'project_id = ' . $projectId,
+                'page' => $page
+            ]);
+            return Response::text(json_encode($tasks));
+        } catch (\Throwable $e) {
+            return Response::text("ERROR: " . $e->getMessage());
+        }
     }
 }

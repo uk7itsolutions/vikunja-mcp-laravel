@@ -22,9 +22,13 @@ class GetTaskTool extends VikunjaTool
 
     protected function execute(Request $request): Response
     {
-        $taskId = $request->get('task_id');
-        $task = $this->client->get("tasks/{$taskId}");
-        
-        return Response::text(json_encode($task));
+        try {
+            $taskId = $request->get('task_id');
+            $task = $this->client->get("tasks/{$taskId}");
+            
+            return Response::text(json_encode($task));
+        } catch (\Throwable $e) {
+            return Response::text("ERROR: " . $e->getMessage());
+        }
     }
 }
