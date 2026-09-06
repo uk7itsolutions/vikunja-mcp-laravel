@@ -10,14 +10,16 @@ This server currently exposes the following capabilities to the AI:
 
 - **`list-projects`**: Fetch a list of all available projects in your Vikunja instance.
 - **`list-tasks`**: Retrieve tasks belonging to a specific project.
-- **`list-buckets`**: List all Kanban buckets for a project or specific view, including their IDs and titles.
-- **`get-task`**: Fetch complete details for a specific task, including its relationships and dependencies.
-- **`create-task`**: Create a new task in a specified project with a title, description, priority, and due date.
-- **`update-task`**: Modify an existing task (change title, description, priority, due date, mark as done, or move it to a different project).
+- **`list-buckets`**: List all Kanban buckets for a project or specific view.
+- **`list-labels`**: List all available labels in Vikunja (supports searching).
+- **`get-task`**: Fetch complete details for a specific task.
+- **`create-task`**: Create a new task in a specified project.
+- **`update-task`**: Modify an existing task.
 - **`delete-task`**: Permanently delete a task.
-- **`create-task-relation`**: Add a relationship/dependency between two tasks (e.g., mark one as a `subtask`, `blocking`, `related`, etc.).
+- **`manage-task-label`**: Add or remove a label from a task (automatically creates the label if it doesn't exist).
+- **`create-task-relation`**: Add a relationship/dependency between two tasks.
 - **`remove-task-relation`**: Remove an existing relationship between two tasks.
-- **`move-task-to-bucket`**: Move a task to a specific Kanban bucket within a project's view.
+- **`move-task-to-bucket`**: Move a task to a specific Kanban bucket.
 
 ## Installation & Setup
 
